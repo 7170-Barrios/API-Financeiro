@@ -28,6 +28,8 @@ route.post("/cadastro", verificar_token, (req, res) => {
 });
 
 route.put("/atualizar/:id", verificar_token, (req, res) => {
+    //não permite alterar o id de usuario vinculado... a alteracao sempre sera do id passado pelo token
+    req.body.idusuario = req.data.id;
     Financeiro.findByIdAndUpdate(
         req.params.id, 
         req.body, 
